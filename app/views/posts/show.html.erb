@@ -1,0 +1,47 @@
+<h1> <%= @post.name %> </h1>
+<div class="posts_show_field">
+
+	<div class = "posts_show_content">
+		<%= @post.rich_content %>
+	</div>
+
+	<div class="posts_show_tags">
+	<% @tags.each do |tag|%>
+		<%= tag %>
+	<% end%>
+	</div>
+
+	<div class = "posts_show_mark">
+		<%= @post.mark %>
+	</div>
+
+	<% if current_user %>
+		<div class="all_comments">
+			<% @comments.each do |comment| %>
+				<div class="comment">
+					<% @author = User.find(comment.user_id)%>
+					<p> Author : <%=@author.username%></p>
+					<%= comment.rich_content%>
+				</div>
+			<% end %>
+		</div>
+
+		<div class="new_comment">
+			<p>Give your comment : </p>
+		</div>
+		<%= form_with url: '/comments',method: :post do |form| %>
+		<div>
+			<div><%= form.rich_text_area :rich_content %></div>
+			<%= form.hidden_field :user_id, value: current_user.id%>
+			<%= form.hidden_field :post_id, value: @post.id%>
+			<%= form.hidden_field :content, value: ""%>
+			<%= form.submit :Send%>
+		</div>
+		<% end %>
+		<div class="like_btn">
+			<%= link_to 'Like', likes_path(:post_id => @post.id, :user_id => @user.id ), method: :post%>
+		</div>
+		<%= link_to 'Go to personal account', '/homes/show' %>
+	<% end %>
+	<%= link_to 'Go to home page', '/'%>
+</div>

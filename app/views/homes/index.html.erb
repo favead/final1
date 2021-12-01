@@ -1,0 +1,23 @@
+<header>
+	<div>
+		<ul>
+			<% if !current_user %>
+				<li><%= link_to 'Sign up', new_user_registration_path%></li>
+				<li><%= link_to 'Sign in', new_user_session_path%></li>
+			<% else %>
+				<li>Hello , <%= current_user.username %> </li>
+				<li><%= link_to 'Visit your personal account', home_path(:id => current_user.id)%></li>
+			<% end %>
+		</ul>
+	</div>
+</header>
+<div class = "main">
+	<div class = "start_reviews">
+		<div class = "start_reviews_new">
+			
+		</div>
+		<div class = "start_reviews_most_rated">
+			
+		</div>
+	</div>
+</div>

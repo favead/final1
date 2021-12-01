@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task5</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div class = "search">
+    <input class = "search_input" type="text" name="search">
+    <ul class = "search_res">
+      
+    </ul>
+    <script type="text/javascript">
+      $(".search_input").on('input',function () {
+        $(".search_res").empty();
+        let v = this.value
+        if(/^[a-zA-Z0-9]+$/.test(v)){
+          $.ajax({
+            type: 'GET',
+            url: `/find/${v}`,
+            success: function(data){
+              if(data){
+                data.forEach(obj => {
+                  if(obj.published){  
+                    $(".search_res").append(`
+                      <li>
+                        <div class = "post">
+                          <p>${obj.name}<p>
+                          <p>${obj.content}</p>
+                          <a href = "/posts/${obj.id}" >Show</a>
+                        </div>
+                      </li>`
+                      )
+                    }
+                })
+              }
+            }
+          })
+        }
+      });
+    </script>
+  </div>
+    <%= yield %>
+  </body>
+</html>

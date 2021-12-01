@@ -1,0 +1,24 @@
+<h1>Hello, <%=current_user.username%></h1>
+<div>
+	<p>All Likes : <%= @likes.count || 0 %></p>
+</div>
+<%= link_to 'Create new post' , @new_post %>
+<%= link_to 'Logout' , destroy_user_session_path, method: :delete%>
+<%= link_to 'Edit' , edit_user_password_path %>
+<div>
+	<ul>
+		<% @posts.each do |post|%>
+			<div>
+				<li> Name : <%= post.name %></li>
+				<li> Tags : <%= post.tags %></li>
+				<li> Published : <%= post.published %> </li>
+				<%= link_to 'Show', post_path(:id => post.id)%>
+				<%= link_to 'Edit post', edit_post_path(:id => post.id)  %>
+				<%= link_to 'Delete post', post_path(:id => post.id), method: :delete %>
+			</div>			
+		<% end%>
+	</ul>
+	<div class = "back">
+		<%= link_to 'Back to search', '/'%>
+	</div>
+</div>

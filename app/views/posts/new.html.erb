@@ -1,0 +1,29 @@
+<h2>Lets create your post!</h2>
+
+<%= form_with url:'/posts', method: :post do |form|%>
+	<%= form.hidden_field :user_id, value: current_user.id%>
+	<%= form.hidden_field :content, value: ""%>
+	<div class = "field">
+		<%= form.label :name%>
+		<%= form.select :name, ['Book','Game','Moovie']%>
+	</div>
+	<div class = "field">
+		<%= form.label :content%>
+		<%= form.rich_text_area :rich_content%>
+	</div>
+	<div class = "field">
+		<%= form.label :tags%>
+		<%= form.text_field :tags%>
+	</div>
+	<div class = "field">
+		<%= form.label :published%>
+		<%= form.check_box :published%>
+	</div>
+	<div class = "field">
+		<%= form.label :mark%>
+		<%= form.number_field :mark, max: 10%>
+	</div>
+	<div class = "actions">
+		<%= form.submit %>
+	</div>
+<%end%>
