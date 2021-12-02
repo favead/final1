@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :set_user, only: [:edit,:update,:destroy]
-	before_action :set_post, [:show,:update,:destroy]
+	before_action :set_post, only: [:show,:update,:destroy]
 
 	def new
 		@post = Post.new
