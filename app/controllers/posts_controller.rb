@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
-	before_action :set_post, :set_user, only: [:show,:edit,:update,:destroy]
+	before_action :set_user, only: [:edit,:update,:destroy]
+	before_action :set_post, [:show,:update,:destroy]
 
 	def new
 		@post = Post.new
 	end
 
 	def show
-		@id = params[:id].to_i
-		@post = Post.find(@id)
 		@tags = @post.tags.split(' ')
 		@comments = Comment.where(post_id: @id)
 	end
