@@ -8,6 +8,12 @@ class Comment < ApplicationRecord
 
 	multisearchable against: :content
 
+	PgSearch.multisearch_options = {
+		using: {
+			tsearch: {prefix: true}		
+		}
+	}
+
 	after_save :reindex
 
 	private

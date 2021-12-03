@@ -1,5 +1,5 @@
 <h1>Edit your post</h1>
-<%= form_with url:post_path(:id => @post.id), method: :put do |form| %>
+<%= form_with url: post_path(:id => @post.id), method: :put do |form| %>
 	<%= form.hidden_field :id, value: @post.id%>
 	<div class="field">
 		<h2>Select new name for post</h2>

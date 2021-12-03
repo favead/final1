@@ -3,6 +3,9 @@ class HomesController < ApplicationController
 
 
 	def index
+		@posts_on_block = 5
+		@posts_latest = Post.last(@posts_on_block)
+		@posts_rated = Post.order("rate").reverse.last(@posts_on_block)
 	end
 
 	def find
@@ -47,6 +50,5 @@ class HomesController < ApplicationController
 	def set_user
 		@user = User.find(current_user.id)
 	end
-
 
 end

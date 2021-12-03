@@ -9,10 +9,13 @@ class Post < ApplicationRecord
 
 	has_rich_text :rich_content
 
-	multisearchable against:[:name,:content,:tags],
-					using: {
-						tsearch: {prefix: true}
-					}
+	multisearchable against:[:name,:content,:tags]
+
+	PgSearch.multisearch_options = {
+		using: {
+			tsearch: {prefix: true}		
+		}
+	}
 
 	after_save :reindex
 

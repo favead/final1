@@ -1,14 +1,17 @@
 class PostsController < ApplicationController
 	before_action :set_user, only: [:edit,:update,:destroy]
-	before_action :set_post, only: [:show,:update,:destroy]
+	before_action :set_post, only: [:show,:update,:destroy,:edit]
 
 	def new
 		@post = Post.new
 	end
 
 	def show
+		@av_rate = @post.rate
+		
 		@tags = @post.tags.split(' ')
-		@comments = Comment.where(post_id: @id)
+		
+		@comments = Comment.where(post_id: @post.id)
 	end
 
 
@@ -62,4 +65,5 @@ class PostsController < ApplicationController
 		def set_user
 			@user = User.find(current_user.id.to_i)
 		end
+
 end

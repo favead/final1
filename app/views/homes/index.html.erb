@@ -14,10 +14,28 @@
 <div class = "main">
 	<div class = "start_reviews">
 		<div class = "start_reviews_new">
-			
+			<% @posts_latest.each do |post| %>
+			<div class="card">
+				<div class = "rate name">
+					<p>Name : <%= post.name %></p>
+					<p>rate : <%= post.rate %></p>
+				</div>
+				<p>Content : <%= post.rich_content%></p>
+				<%= link_to 'Show', post_path(:id => post.id)%>
+			</div>
+			<% end %>
 		</div>
-		<div class = "start_reviews_most_rated">
-			
+		<div class = "start_reviews_new">
+			<% @posts_rated.each do |post| %>
+				<div class="card">
+					<div class = "rate name">
+						<p>Name : <%= post.name %></p>
+						<p>rate : <%= post.rate %></p>
+					</div>
+					<p>Content : <%= post.rich_content%></p>
+					<%= link_to 'Show', post_path(:id => post.id)%>
+				</div>
+			<% end %>
 		</div>
 	</div>
 </div>

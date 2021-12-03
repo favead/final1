@@ -1,5 +1,10 @@
-<h1> <%= @post.name %> </h1>
+<div class="header">
+	<h1> <%= @post.name %> </h1>	
+	<p> Rate : <%= @av_rate %> </p>
+</div>
 <div class="posts_show_field">
+
+
 
 	<div class = "posts_show_content">
 		<%= @post.rich_content %>
@@ -15,7 +20,6 @@
 		<%= @post.mark %>
 	</div>
 
-	<% if current_user %>
 		<div class="all_comments">
 			<% @comments.each do |comment| %>
 				<div class="comment">
@@ -26,10 +30,13 @@
 			<% end %>
 		</div>
 
+	<% if current_user %>
+		
 		<div class="new_comment">
 			<p>Give your comment : </p>
 		</div>
 		<%= form_with url: '/comments',method: :post do |form| %>
+
 		<div>
 			<div><%= form.rich_text_area :rich_content %></div>
 			<%= form.hidden_field :user_id, value: current_user.id%>
@@ -38,8 +45,42 @@
 			<%= form.submit :Send%>
 		</div>
 		<% end %>
+
 		<div class="like_btn">
 			<%= link_to 'Like', likes_path(:post_id => @post.id, :user_id => current_user.id ), method: :post%>
+		</div>
+
+		<div class = "rate">			
+			<form action="/rates" method="post">
+				<div class="rating-area">
+				<input type="hidden" name="user_id" value=<%=current_user.id%>>
+
+				<input type="hidden" name="post_id" value=<%=@post.id%>>
+
+				<input type="radio" id="star-5" name="count" value=5>
+
+				<label for="star-5" title="Оценка «5»"></label>	
+
+				<input type="radio" id="star-4" name="count" value=4>
+
+				<label for="star-4" title="Оценка «4»"></label>    
+
+				<input type="radio" id="star-3" name="count" value=3>
+
+				<label for="star-3" title="Оценка «3»"></label>  
+
+				<input type="radio" id="star-2" name="count" value=2>
+
+				<label for="star-2" title="Оценка «2»"></label>    
+
+				<input type="radio" id="star-1" name="count" value=1>
+
+				<label for="star-1" title="Оценка «1»"></label>
+
+				<p><input type="submit" class="post_show_submit_rate" value="Rate"></p>
+
+				</div>
+			</form>
 		</div>
 		<%= link_to 'Go to personal account', '/homes/show' %>
 	<% end %>
