@@ -6,9 +6,10 @@
 			<div class="card">
 				<div class = "rate name">
 					<p>Name : <%= post.name %></p>
-					<p>rate : <%= post.rate %></p>
+					<p>rate : <%= post.rate %>/5</p>
 				</div>
 				<p>Content : <%= post.rich_content%></p>
+				<p>Author mark : <%= post.mark %>/10</p>
 				<%= link_to 'Show', post_path(:id => post.id)%>
 			</div>
 			<% end %>
@@ -19,10 +20,11 @@
 				<div class="card">
 					<div class = "rate name">
 						<p>Name : <%= post.name %></p>
-						<p>rate : <%= post.rate %></p>
+						<p>rate : <%= post.rate %>/5</p>
 					</div>
-					<p>Content : <%= post.rich_content%></p>
-					<%= link_to 'Show', post_path(:id => post.id)%>
+				<p>Content : <%= post.rich_content%></p>
+				<p>Author mark : <%= post.mark %>/10</p>					
+				<%= link_to 'Show', post_path(:id => post.id)%>
 				</div>
 			<% end %>
 		</div>

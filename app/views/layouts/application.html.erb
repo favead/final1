@@ -14,10 +14,12 @@
   <div class="header">
     <div class = "search">
       <p>Search the post  </p>
-      <input class = "search_input" type="text" name="search">
-      <ul class = "search_res">
-        
-      </ul>
+      <div class="home_search_all">
+        <input class = "search_input" type="text" name="search">
+        <ul class = "search_res">
+          
+        </ul>
+      </div>
       <script type="text/javascript">
         $(".search_input").on('input',function () {
           $(".search_res").empty();
@@ -32,10 +34,9 @@
                     if(obj.published){  
                       $(".search_res").append(`
                         <li>
-                          <div class = "post">
-                            <p>${obj.name}<p>
-                            <p>${obj.content}</p>
-                            <a href = "/posts/${obj.id}" >Show</a>
+                          <div class = "post_li">
+                            <p> Name : ${obj.name}</p>
+                            <a href = "/posts/${obj.id}">Show</a>
                           </div>
                         </li>`
                         )
@@ -50,6 +51,18 @@
     </div>
     <div class = "user_homes">
       <ul>
+          <li id = "theme" class="theme_disable">Change theme</li>
+          <script type="text/javascript">
+            $("#theme").on('click',function(){
+              if(this.classList.contains("theme_disable")){
+                $(".theme_disable").removeClass().addClass('theme_enable')
+                $("html").css('filter','invert(100%)')
+              }else{
+                $(".theme_enable").removeClass().addClass('theme_disable')
+                $("html").css('filter','invert(0%)')
+              }
+            })          
+          </script>
         <% if !current_user %>
           <li><%= link_to 'Sign up', new_user_registration_path%></li>
           <li><%= link_to 'Sign in', new_user_session_path%></li>
@@ -61,5 +74,6 @@
     </div>
   </div>
     <%= yield %>
+  <footer class="footer"></footer>
   </body>
 </html>

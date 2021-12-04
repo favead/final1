@@ -1,27 +1,33 @@
-<h1>Hello, <%=current_user.username%></h1>
-<% if (@user.admin)%>
- <p><%= link_to 'Admin panel', admin_index_path %></p>
-<% end %>
-<div>
-	<p>All Likes : <%= @likes.count || 0 %></p>
-</div>
-<%= link_to 'Create new post' , @new_post %>
-<%= link_to 'Logout' , destroy_user_session_path, method: :delete%>
-<%= link_to 'Edit' , edit_user_password_path %>
-<div>
-	<ul>
-		<% @posts.each do |post|%>
-			<div>
-				<li> Name : <%= post.name %></li>
-				<li> Tags : <%= post.tags %></li>
-				<li> Published : <%= post.published %> </li>
-				<%= link_to 'Show', post_path(:id => post.id)%>
-				<%= link_to 'Edit post', edit_post_path(:id => post.id)  %>
-				<%= link_to 'Delete post', post_path(:id => post.id), method: :delete %>
-			</div>			
-		<% end%>
-	</ul>
-	<div class = "back">
-		<%= link_to 'Back to search', '/'%>
+<div class="home_show">
+	<div class="home_show_mooves">
+		<% if (@user.admin)%>
+		<div class="home_show_admin_panel"><p class="home_show_admin_panel_p"><%= link_to 'Admin panel', admin_index_path %></p></div>
+		<% end %>
+		<div class="home_show_likes">
+			<p class="home_show_likes_p">All Likes : <%= @likes.count || 0 %></p>
+		</div>
+
+		<div class = "home_show_d">
+			<%= link_to 'Create new post' , @new_post %>
+			<%= link_to 'Logout' , destroy_user_session_path, method: :delete%>
+			<%= link_to 'Edit' , edit_user_password_path %>
+		</div>		
 	</div>
+	<div class="home_show_posts">
+			<% @posts.each do |post|%>
+				<div class="home_show_post_card card">
+					<p> Name : <%= post.name %></p>
+					<p> Tags : <%= post.tags %></p>
+					<p> Published : <%= post.published %> </p>
+					<div class="home_show_post_card_links">
+						<%= link_to 'Show', post_path(:id => post.id)%>
+						<%= link_to 'Edit', edit_post_path(:id => post.id)  %>
+						<%= link_to 'Delete', post_path(:id => post.id), method: :delete %>
+					</div>
+				</div>			
+			<% end%>
+	</div>
+</div>
+<div class = "home_show_back">
+	<%= link_to 'Back to search', '/'%>
 </div>

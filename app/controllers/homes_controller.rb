@@ -15,10 +15,10 @@ class HomesController < ApplicationController
 
 		@search.each do |search|
 			if(search.searchable_type == 'Post')
-				@post = Post.find(search.searchable_id.to_i)
+				@post = Post.find(search.searchable_id.to_i) || nil
 			elsif (search.searchable_type == 'Comment')
-				@comment = Comment.find(search.searchable_id.to_i)
-				@post = Post.find(@comment.post_id)
+				@comment = Comment.find(search.searchable_id.to_i) || nil
+				@post = Post.find(@comment.post_id) || nil
 			end
 			@posts.push(@post)
 		end
@@ -27,7 +27,7 @@ class HomesController < ApplicationController
 		
 		respond_to do |format|
 
-			if @posts.count > 0
+			if (@posts.first)
 				format.json {render :json => @posts.to_json}
 			else
 				format.json {render :json => @message.to_json}
@@ -38,11 +38,12 @@ class HomesController < ApplicationController
 	def show
 		@likes = Like.where(:user_id => @user.id, :liked => true)
 
-		@user = User.find(current_user.id)
+		@user = User.find(current_user.id) #to do чтобы считались лайки тебе и лайки от тебя
 
 		@new_post = '/posts/new'
 
 		@posts = Post.where(user_id: @user.id)
+
 	end
 
 	private

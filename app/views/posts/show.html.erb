@@ -1,9 +1,9 @@
-<div class="header">
-	<h1> <%= @post.name %> </h1>	
-	<p> Rate : <%= @av_rate %> </p>
-</div>
-<div class="posts_show_field">
+<div class="posts_show">
 
+	<div class="post_show_name">
+		<h2>Post about <%= @post.name %> </h2>	
+		<p> Rate : <%= @av_rate %>/5 </p>
+	</div>	
 
 
 	<div class = "posts_show_content">
@@ -82,7 +82,7 @@
 				</div>
 			</form>
 		</div>
-		<%= link_to 'Go to personal account', '/homes/show' %>
+	<%= link_to 'Back to personal account', '/homes/show' %>
 	<% end %>
-	<%= link_to 'Go to home page', '/'%>
+	<%= link_to 'Back to search', '/'%>
 </div>

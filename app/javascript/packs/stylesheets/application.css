@@ -2,12 +2,21 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 a{
     text-decoration: none;
 }
-body{
-    background-color: #fafafa;
+html,body{
+    min-height: 100vh;
+    height: auto;
+}
+footer{
+    width: 100%;
+    height: 1px;
+}
+#theme{
+    cursor: pointer;
 }
 .search{
     margin-left: 50px;
@@ -15,10 +24,38 @@ body{
     flex-direction: row;
 }
 .search_input{
-    margin: 10px auto 0;
+    width: 600px;
+    height : 50px;
 }
+.home_search_all{
+    margin: 10px auto 0;
+    display: flex;
+    flex-direction: column;
+}
+.search_res{
+    position: absolute;
+    width: 600px;
+    top: 15%;
+    border: 2px black solid;
+    border-bottom: none;
+    border-top: none;
+    padding: 0;
+}
+.search_res li{
+    border-bottom: 2px black solid;
+    margin: 0;
+    background-color: #fafafa;
 
+}
+.post_li{
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: 40px;
+}
 .header{
+    width: 100%;
     display: flex;
     flex-direction: row;
     background-color: #f2f2f2;
@@ -29,10 +66,14 @@ body{
     margin-top: 20px;
 }
 .user_homes{
-    width: 300px;
+    width: 500px;
     padding-top: 10px;
     color: #000;
     margin-left: auto;
+}
+.user_homes ul{
+    display : flex;
+    flex-direction : row;
 }
 .user_homes ul li{
     margin-top: 15px;
@@ -45,10 +86,13 @@ body{
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     margin : 5px 20px;
     width: 250px;
-    height: 150px;
+    height: 200px;
 }
 .card a{
     margin: auto 0;
+}
+.main{
+    height: 700px;
 }
 .start_reviews{
     padding-top: 10px;
@@ -68,7 +112,7 @@ body{
 .rate p{
     margin: 0px 10px 0 0;
 }
-.trix-content{
+.start_reviews_new .trix-content{
     height : 20px;
     text-oferflow: ellipsis;
     overflow: hidden;
@@ -79,4 +123,49 @@ body{
 .home_head_posts_p{
     font-weight: 600;
     font-size: 22px;
+}
+.post_li p{
+    margin: 0;
+}
+.post_li a{
+    font-size: 18px;
+    margin-left: auto;
+}
+
+/* home show */
+.home_show{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+}
+.home_show_d{
+    flex-direction: column;
+}
+.home_show_d a{
+    display: block;
+    width: 100%;
+}
+.home_show_mooves{
+    width: 400px;
+    margin: 0 auto 0 30px;
+}
+.home_show_posts{
+    width: 750px;
+    display: flex;
+    flex-direction: row;
+}
+.home_show_post_card{
+    padding-bottom: 5px;
+}
+.home_show_post_card_links{
+    flex-direction: row;
+}
+.home_show_post_card_links a{
+    width: fit-content;
+    margin-right: 10px;
+}
+/* post show */
+
+:root{
+    background-color: #fafafa;
 }

@@ -13,6 +13,11 @@ class LikesController < ApplicationController
 		redirect_to post_path(:id => params[:post_id])
 	end
 
+	def show
+
+	end
+
+
 	private 
 
 	def like_params
