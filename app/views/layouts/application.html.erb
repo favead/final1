@@ -11,40 +11,54 @@
   </head>
 
   <body>
-  <div class = "search">
-    <input class = "search_input" type="text" name="search">
-    <ul class = "search_res">
-      
-    </ul>
-    <script type="text/javascript">
-      $(".search_input").on('input',function () {
-        $(".search_res").empty();
-        let v = this.value
-        if(/^[a-zA-Z0-9]+$/.test(v)){
-          $.ajax({
-            type: 'GET',
-            url: `/find/${v}`,
-            success: function(data){
-              if(data){
-                data.forEach(obj => {
-                  if(obj.published){  
-                    $(".search_res").append(`
-                      <li>
-                        <div class = "post">
-                          <p>${obj.name}<p>
-                          <p>${obj.content}</p>
-                          <a href = "/posts/${obj.id}" >Show</a>
-                        </div>
-                      </li>`
-                      )
-                    }
-                })
+  <div class="header">
+    <div class = "search">
+      <p>Search the post  </p>
+      <input class = "search_input" type="text" name="search">
+      <ul class = "search_res">
+        
+      </ul>
+      <script type="text/javascript">
+        $(".search_input").on('input',function () {
+          $(".search_res").empty();
+          let v = this.value
+          if(/^[a-zA-Z0-9]+$/.test(v)){
+            $.ajax({
+              type: 'GET',
+              url: `/find/${v}`,
+              success: function(data){
+                if(data){
+                  data.forEach(obj => {
+                    if(obj.published){  
+                      $(".search_res").append(`
+                        <li>
+                          <div class = "post">
+                            <p>${obj.name}<p>
+                            <p>${obj.content}</p>
+                            <a href = "/posts/${obj.id}" >Show</a>
+                          </div>
+                        </li>`
+                        )
+                      }
+                  })
+                }
               }
-            }
-          })
-        }
-      });
-    </script>
+            })
+          }
+        });
+      </script>
+    </div>
+    <div class = "user_homes">
+      <ul>
+        <% if !current_user %>
+          <li><%= link_to 'Sign up', new_user_registration_path%></li>
+          <li><%= link_to 'Sign in', new_user_session_path%></li>
+        <% else %>
+          <li>Hello , <%= current_user.username %> </li>
+          <li><%= link_to 'Go to account', home_path(:id => current_user.id)%></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
     <%= yield %>
   </body>

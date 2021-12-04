@@ -44,26 +44,26 @@ class PostsController < ApplicationController
 
 	private
 
-		def new_post_params
-			@content = params[:rich_content].to_s
-			@content.split(/\<.*?\>/).join('')
-			params[:content] = @content
-			params.permit(:name,:content,:user_id,:tags,:published,:mark,:rich_content)
-		end
+	def new_post_params
+		@content = params[:rich_content].to_s
+		@content.split(/\<.*?\>/).join('')
+		params[:content] = @content
+		params.permit(:name,:content,:user_id,:tags,:published,:mark,:rich_content)
+	end
 
-		def update_post_params
-			@content = params[:rich_content].to_s
-			@content.split(/\<.*?\>/).join('')
-			params[:content] = @content
-			params.permit(:name,:content,:published,:tags,:mark,:rich_content)
-		end
+	def update_post_params
+		@content = params[:rich_content].to_s
+		@content.split(/\<.*?\>/).join('')
+		params[:content] = @content
+		params.permit(:name,:content,:published,:tags,:mark,:rich_content)
+	end
 
-		def set_post
-			@post = Post.find(params[:id].to_i)
-		end
+	def set_post
+		@post = Post.find(params[:id].to_i)
+	end
 
-		def set_user
-			@user = User.find(current_user.id.to_i)
-		end
+	def set_user
+		@user = User.find(current_user.id.to_i)
+	end
 
 end

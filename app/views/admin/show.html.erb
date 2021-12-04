@@ -1,13 +1,9 @@
 <h1>Hello, <%=current_user.username%></h1>
-<% if (@user.admin)%>
- <p><%= link_to 'Admin panel', admin_index_path %></p>
-<% end %>
+ <p><%= link_to 'back to admin panel', admin_index_path %></p>
 <div>
 	<p>All Likes : <%= @likes.count || 0 %></p>
 </div>
-<%= link_to 'Create new post' , @new_post %>
-<%= link_to 'Logout' , destroy_user_session_path, method: :delete%>
-<%= link_to 'Edit' , edit_user_password_path %>
+<%= link_to 'Create new post' , '/admin/posts/new' %>
 <div>
 	<ul>
 		<% @posts.each do |post|%>
@@ -15,8 +11,8 @@
 				<li> Name : <%= post.name %></li>
 				<li> Tags : <%= post.tags %></li>
 				<li> Published : <%= post.published %> </li>
-				<%= link_to 'Show', post_path(:id => post.id)%>
-				<%= link_to 'Edit post', edit_post_path(:id => post.id)  %>
+				<%= link_to 'Show', `admin/posts/#{post.id}`%>
+				<%= link_to 'Edit post', `admin/posts/#{post.id}/edit`  %>
 				<%= link_to 'Delete post', post_path(:id => post.id), method: :delete %>
 			</div>			
 		<% end%>

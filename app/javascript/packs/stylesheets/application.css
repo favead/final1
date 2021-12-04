@@ -1,0 +1,82 @@
+*{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+body{
+    background-color: #fafafa;
+}
+.search{
+    margin-left: 50px;
+    width: 800px;
+    flex-direction: row;
+}
+.search_input{
+    margin: 10px auto 0;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    background-color: #f2f2f2;
+    height: 80px;
+}
+.header p{
+    font-size: 18px;
+    margin-top: 20px;
+}
+.user_homes{
+    width: 300px;
+    padding-top: 10px;
+    color: #000;
+    margin-left: auto;
+}
+.user_homes ul li{
+    margin-top: 15px;
+    font-size: 18px;
+}
+.main{
+}
+.card{
+    padding: 5px 0 0 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin : 5px 20px;
+    width: 250px;
+    height: 150px;
+}
+.card a{
+    margin: auto 0;
+}
+.start_reviews{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.start_reviews_new{
+    margin: 20px 0 20px;
+    display: flex;
+    flex-direction:row;
+}
+.rate{
+    display: flex;
+    flex-direction:row; 
+}
+.rate p{
+    margin: 0px 10px 0 0;
+}
+.trix-content{
+    height : 20px;
+    text-oferflow: ellipsis;
+    overflow: hidden;
+}
+.home_head_posts{
+    margin: 5px auto 0;
+}
+.home_head_posts_p{
+    font-weight: 600;
+    font-size: 22px;
+}

@@ -11,11 +11,11 @@ class AdminController < ApplicationController
 
 		@user = User.find(params[:id])
 
-		@new_post = '/posts/new'
+		@new_post = '/admin/posts/new'
+		@show_post = ''
 
 		@posts = Post.where(user_id: @user.id)
 	end
-
 
 
 	private
