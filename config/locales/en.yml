@@ -87,3 +87,10 @@ en:
     show:
       about: "Posts with tag"
       back: "Home"
+      name: "Name"
+      tags: "Tags"
+      content: "Content"
+      mark: "Author mark"
+      show: "Show"
+      rate: "Rate"
+      edit: "Edit"
