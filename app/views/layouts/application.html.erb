@@ -53,6 +53,12 @@
     </div>
     <div class = "user_homes">
       <ul>
+          <li id="locale" class="switch">
+            <ul class="switch_locale">
+              <li><a href="/?locale=ru">ru<a/></li>
+              <li><a href="/?locale=en">en</a></li>
+            </ul>
+          </li>
           <li id = "theme" class="theme_disable"><%= t('menu.theme')%></li>
           <script type="text/javascript">
             $("#theme").on('click',function(){
