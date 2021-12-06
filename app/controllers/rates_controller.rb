@@ -17,7 +17,7 @@ class RatesController < ApplicationController
 
 		@post.update(:rate => @av_rate)
 
-		redirect_to post_path(:id => params[:post_id])
+		redirect_to '/posts/'+@post.id.to_s
 	end
 
 	private 
@@ -31,7 +31,7 @@ class RatesController < ApplicationController
 	end
 
 	def update_params
-		params.permit(:count,:post_id,:user_id)
+		params.permit(:mark,:post_id,:user_id)
 	end
 
 	def post_params
@@ -42,9 +42,9 @@ class RatesController < ApplicationController
 	def average_rate(rates)
 		@t = 0
 		rates.each do |rate|
-			@t += rate.count.to_i
+			@t += rate.mark.to_i
 		end
-		return (@t/@rate.count)
+		return (@t/rates.count.to_i)
 	end
 
 end

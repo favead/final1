@@ -9,12 +9,9 @@ class AdminController < ApplicationController
 	def show
 		@likes = Like.where(:user_id => params[:id], :liked => true)
 
-		@user = User.find(params[:id])
+		@user_c = User.find(params[:id])
 
-		@new_post = '/admin/posts/new'
-		@show_post = ''
-
-		@posts = Post.where(user_id: @user.id)
+		@posts = Post.where(user_id: @user_c.id)
 	end
 
 

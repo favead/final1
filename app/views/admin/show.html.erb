@@ -1,23 +1,35 @@
-<h1>Hello, <%=current_user.username%></h1>
- <p><%= link_to 'back to admin panel', admin_index_path %></p>
-<div>
-	<p>All Likes : <%= @likes.count || 0 %></p>
-</div>
-<%= link_to 'Create new post' , '/admin/posts/new' %>
-<div>
-	<ul>
-		<% @posts.each do |post|%>
-			<div>
-				<li> Name : <%= post.name %></li>
-				<li> Tags : <%= post.tags %></li>
-				<li> Published : <%= post.published %> </li>
-				<%= link_to 'Show', `admin/posts/#{post.id}`%>
-				<%= link_to 'Edit post', `admin/posts/#{post.id}/edit`  %>
-				<%= link_to 'Delete post', post_path(:id => post.id), method: :delete %>
-			</div>			
-		<% end%>
-	</ul>
-	<div class = "back">
-		<%= link_to 'Back to search', '/'%>
+<div class="home_show">
+	<div class="home_show_mooves">
+		<% if (@user.admin)%>
+		<div class="home_show_admin_panel">
+			<p class="home_show_admin_panel_p">User's name : <%= @user_c.username || 'nil' %></p>
+			<p class="home_show_admin_panel_p"><%= link_to 'Back to admin panel', admin_index_path %></p>
+		</div>
+		<% end %>
+		<div class="home_show_likes">
+			<p class="home_show_likes_p">All Likes : <%= @likes.count || 0 %></p>
+		</div>
+
+		<div class = "home_show_d">
+			<%= link_to 'Create new post' , new_post_path(:user_id => @user_c.id) %>
+		</div>		
 	</div>
+	<div class="home_show_posts">
+			<% @posts.each do |post|%>
+				<div class="home_show_post_card card">
+					<p> Name : <%= post.name %></p>
+					<p> Tags : <%= raw post.tags.map(&:title).map{ |t| link_to t, class: 'tag tag-primary'}.join(' ') %></p>
+					<p> Published : <%= post.published %> </p>
+					<div class="home_show_post_card_links">
+						<% 	@post_show = '/posts/' + post.id.to_s%>
+						<%= link_to 'Show', @post_show%>
+						<%= link_to 'Edit', edit_post_path(:user_id => @user.id,:id => post.id)  %>
+						<%= link_to 'Delete', post_path(:user_id => @user.id,:id => post.id), method: :delete %>
+					</div>
+				</div>			
+			<% end%>
+	</div>
+</div>
+<div class = "home_show_back">
+	<%= link_to 'Back to search', '/'%>
 </div>

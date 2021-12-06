@@ -1,19 +1,18 @@
-<h2>Lets create your post!</h2>
-
-<%= form_with url:'/posts', method: :post do |form|%>
-	<%= form.hidden_field :user_id, value: current_user.id%>
+<div class="new_post"><h2 class="posts_new_h2"><%= t('.new_post')%></h2></div>
+<%= form_with url:posts_path(:user_id => @user.id), method: :post do |form|%>
+	<%= form.hidden_field :user_id, value: @user.id%>
 	<%= form.hidden_field :content, value: ""%>
 	<div class = "field">
-		<%= form.label :name%>
+		<%= form.label t('.name') %>
 		<%= form.select :name, ['Book','Game','Moovie']%>
 	</div>
 	<div class = "field">
-		<%= form.label :content%>
+		<%= form.label t('.content')%>
 		<%= form.rich_text_area :rich_content%>
 	</div>
-	<div class = "field">
-		<%= form.label :tags%>
-		<%= form.text_field :tags%>
+	<div class = "field_tags">
+		<%= form.label :tagging%>
+		<%= form.text_field :tagging%>
 	</div>
 	<div class = "field">
 		<%= form.label :published%>
@@ -24,6 +23,6 @@
 		<%= form.number_field :mark, max: 10%>
 	</div>
 	<div class = "actions">
-		<%= form.submit %>
+		<%= form.submit t('.create')%>
 	</div>
 <%end%>

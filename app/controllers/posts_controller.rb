@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-	before_action :set_user, only: [:edit,:update,:destroy]
-	before_action :set_post, only: [:show,:update,:destroy,:edit]
+	before_action :set_user, only: [:edit,:new,:create]
+	before_action :set_post, only: [:edit,:show,:destroy,:update]
+	before_action :check_user, only: [:edit, :new]
 
 	def new
 		@post = Post.new
@@ -8,9 +9,7 @@ class PostsController < ApplicationController
 
 	def show
 		@av_rate = @post.rate
-		
-		@tags = @post.tags.split(' ')
-		
+			
 		@comments = Comment.where(post_id: @post.id)
 	end
 
@@ -18,10 +17,11 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(new_post_params)
 				
+
 		respond_to do |format|
 			if @post.save
-				format.html {redirect_to @post, notice: "article was succesly create"}
-				format.json {render :show, status: :created, location: @article}
+				format.html {redirect_to home_path(:id => @user.id), notice: "post was succesly create"}
+				format.json {render :show, status: :created, location: @post}
 			end
 		end
 	end
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
 
 		@post.update(update_post_params)
 
-		redirect_to post_path(:id => @post.id)
+		redirect_to '/posts/'+@post.id.to_s
 
 	end
 
@@ -48,14 +48,14 @@ class PostsController < ApplicationController
 		@content = params[:rich_content].to_s
 		@content.split(/\<.*?\>/).join('')
 		params[:content] = @content
-		params.permit(:name,:content,:user_id,:tags,:published,:mark,:rich_content)
+		params.permit(:name,:content,:published,:mark,:rich_content,:tagging,:user_id)
 	end
 
 	def update_post_params
 		@content = params[:rich_content].to_s
 		@content.split(/\<.*?\>/).join('')
 		params[:content] = @content
-		params.permit(:name,:content,:published,:tags,:mark,:rich_content)
+		params.permit(:name,:content,:published,:mark,:rich_content,:tagging,:user_id)
 	end
 
 	def set_post
@@ -63,7 +63,14 @@ class PostsController < ApplicationController
 	end
 
 	def set_user
-		@user = User.find(current_user.id.to_i)
+		@user = User.find(params[:user_id].to_i)
+	end
+
+	def check_user
+		@user_r = User.find(current_user.id.to_i)
+		if ((!(@user_r.admin)) && @user.id != @user_r.id)
+			redirect_to home_path(:id => @user_r.id)
+		end
 	end
 
 end

@@ -11,13 +11,11 @@
 	</div>
 
 	<div class="posts_show_tags">
-	<% @tags.each do |tag|%>
-		<%= tag %>
-	<% end%>
+		<%= @tags%>
 	</div>
 
 	<div class = "posts_show_mark">
-		<%= @post.mark %>
+		<p>Author's rate : <%= @post.mark %>/10 </p>
 	</div>
 
 		<div class="all_comments">
@@ -25,7 +23,7 @@
 				<div class="comment">
 					<% @author = User.find(comment.user_id)%>
 					<p> Author : <%=@author.username%></p>
-					<%= comment.rich_content%>
+					<div class = "posts_show_comment_rich"></p><%= comment.rich_content%></p></div>
 				</div>
 			<% end %>
 		</div>
@@ -57,23 +55,23 @@
 
 				<input type="hidden" name="post_id" value=<%=@post.id%>>
 
-				<input type="radio" id="star-5" name="count" value=5>
+				<input type="radio" id="star-5" name="mark" value=5>
 
 				<label for="star-5" title="Оценка «5»"></label>	
 
-				<input type="radio" id="star-4" name="count" value=4>
+				<input type="radio" id="star-4" name="mark" value=4>
 
 				<label for="star-4" title="Оценка «4»"></label>    
 
-				<input type="radio" id="star-3" name="count" value=3>
+				<input type="radio" id="star-3" name="mark" value=3>
 
 				<label for="star-3" title="Оценка «3»"></label>  
 
-				<input type="radio" id="star-2" name="count" value=2>
+				<input type="radio" id="star-2" name="mark" value=2>
 
 				<label for="star-2" title="Оценка «2»"></label>    
 
-				<input type="radio" id="star-1" name="count" value=1>
+				<input type="radio" id="star-1" name="mark" value=1>
 
 				<label for="star-1" title="Оценка «1»"></label>
 
@@ -82,7 +80,7 @@
 				</div>
 			</form>
 		</div>
-	<%= link_to 'Back to personal account', '/homes/show' %>
+	<%= link_to 'Back to personal account', home_path(:id => current_user.id) %>
 	<% end %>
 	<%= link_to 'Back to search', '/'%>
 </div>

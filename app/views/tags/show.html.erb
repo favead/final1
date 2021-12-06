@@ -1,0 +1,21 @@
+<div class="home_head_posts" style="width: fit-content;">
+	<p class="home_head_posts_p"> Posts about <%= @tag %></p>
+</div>
+<div class = "start_reviews_new">
+	<% @posts.each do |post| %>
+		<div class="card">
+			<div class = "rate name">
+				<p>Name : <%= post.name %></p>
+				<p>rate : <%= post.rate %>/5</p>
+			</div>
+		<p>Tags : <%= raw post.tags.map(&:title).map{ |t| link_to t, class: 'tag tag-primary'}.join(' ')%></p>
+		<p>Content : <%= post.rich_content%></p>
+		<p>Author mark : <%= post.mark %>/10</p>
+		<% @post_show = '/posts/'+post.id.to_s%>					
+		<%= link_to 'Show', @post_show %>
+		</div>
+	<% end %>
+</div>
+<div class = "home_show_back">
+	<%= link_to 'Back to search', '/'%>
+</div>
