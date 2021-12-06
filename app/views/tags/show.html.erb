@@ -8,7 +8,7 @@
 				<p><%= t('.name')%> : <%= post.name %></p>
 				<p><%= t('.rate')%> : <%= post.rate %>/5</p>
 			</div>
-		<p><%=t('.tags')%> : <%= raw post.tags.map(&:title).map{ |t| link_to t,tag_path(:id=>tag.id) class: 'tag tag-primary'}.join(' ')%></p>
+		<p><%=t('.tags')%> : <%= raw post.tags.map(&:title).map{ |t| link_to t,tag_path(:id=>tag.id), class: 'tag tag-primary'}.join(' ')%></p>
 		<p><%=t('.content')%> : <%= post.rich_content%></p>
 		<p><%=t('.mark')%> : <%= post.mark %>/10</p>
 		<% @post_show = '/posts/'+post.id.to_s%>					
