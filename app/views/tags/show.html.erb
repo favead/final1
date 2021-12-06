@@ -1,5 +1,5 @@
 <div class="home_head_posts" style="width: fit-content;">
-	<p class="home_head_posts_p"> Posts about <%= @tag %></p>
+	<p class="home_head_posts_p"> <%= t('.about')%> <%= @tag %></p>
 </div>
 <div class = "start_reviews_new">
 	<% @posts.each do |post| %>
@@ -17,5 +17,5 @@
 	<% end %>
 </div>
 <div class = "home_show_back">
-	<%= link_to 'Back to search', '/'%>
+	<%= link_to t('.back'), '/'%>
 </div>

@@ -1,7 +1,6 @@
-<h1>Hello, admin</h1>
 <% @users.each do |user| %>
 	<div class="admin_user">
 		<p>mail : <%= user.email %></p>
-		<p><%= link_to 'Check profile', admin_path(:id => user.id)%></p>
+		<p><%= link_to t('.check'), admin_path(:id => user.id)%></p>
 	</div>
 <% end %>

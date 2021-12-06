@@ -11,18 +11,21 @@
 		<%= form.rich_text_area :rich_content%>
 	</div>
 	<div class = "field_tags">
-		<%= form.label :tagging%>
-		<%= form.text_field :tagging%>
+		<%= form.label t('.tags')%>
+		<%= form.text_field :tagging, class: "form-control"%>
 	</div>
 	<div class = "field">
-		<%= form.label :published%>
-		<%= form.check_box :published%>
+		<%= form.label t('.published')%>
+		<%= form.check_box :published, class:"form-check-label"%>
 	</div>
 	<div class = "field">
-		<%= form.label :mark%>
+		<%= form.label t('.mark')%>
 		<%= form.number_field :mark, max: 10%>
 	</div>
 	<div class = "actions">
 		<%= form.submit t('.create')%>
 	</div>
 <%end%>
+<div class="back">
+	<%= link_to t('.back_to_acc'), home_path(:id => current_user.id) %>
+</div>

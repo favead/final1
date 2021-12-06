@@ -1,6 +1,7 @@
 Rails.application.routes.draw do 
-  resources :comments, :homes, :admin ,only:[:index,:show]
+  resources :admin,only:[:index,:show]
   resources :tags, only:[:show]
+  resources :comments, :homes
 
   resources :posts, path: '/homes/:user_id/posts', only:[:new,:create,:edit,:destroy,:update]
   resources :posts, path: '/admin/:user_id/posts',  only:[:new,:create,:edit,:destroy,:update]

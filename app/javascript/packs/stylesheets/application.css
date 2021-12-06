@@ -4,6 +4,8 @@
 p{
     margin: 0;
 }
+input{
+}
 *{
     list-style: none;
     margin: 0;
@@ -177,16 +179,161 @@ footer{
     margin-right: 10px;
 }
 /* post show */
-.posts_show{
-
+.posts_show p{
+    font-size: 20px;
 }
-.posts_show_name{
+.post_show_name{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
     margin: 10px auto;
+}
+.post_show_name p{
+    margin: 10px 20px;
 }
 .posts_new_h2{
 
 }
+.posts_show_content{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.posts_show_content p{
+    width: fit-content;
+    margin: 0 auto 10px;
+}
+.posts_show_content div{
+    text-align: center;
+}
+.posts_show_content p{
+    font-size: 20px;
+}
 .new_post{
     width: fit-content;
     margin: 10px auto;
+}
+.all_comments {
+    text-align: center;
+}
+.comment{
+    width: 700px;
+    margin: 0 auto;
+}
+.posts_show .card{
+    width: 900px;
+    height: 600px;
+    margin: 40px auto 10px;
+}
+.line{
+    width: 500px;
+    margin: 0 auto 15px;
+    background-color: blue;
+    height: 2px;
+}
+.new_comment{
+    margin-left: 20px;
+}
+.posts_show_comment{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.posts_show_comment div{
+    width: 650px;
+}
+.button{
+    width: 100px;
+    height: 50px;
+    margin: 50px 0 auto 20px;
+    padding: 0;
+}
+.posts_show_form{
+    padding-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.rating-area {
+
+    overflow: hidden;
+
+    width: 265px;
+
+    margin: auto auto;
+
+}
+
+.rating-area:not(:checked) > input {
+
+    display: none;
+
+}
+
+.rating-area:not(:checked) > label {
+
+    float: right;
+
+    width: 42px;
+
+    padding: 0;
+
+    cursor: pointer;
+
+    font-size: 32px;
+
+    line-height: 32px;
+
+    color: lightgrey;
+
+    text-shadow: 1px 1px #bbb;
+
+}
+
+.rating-area:not(:checked) > label:before {
+
+    content: '★';
+
+}
+
+.rating-area > input:checked ~ label {
+
+    color: gold;
+
+    text-shadow: 1px 1px #c60;
+
+}
+
+.rating-area:not(:checked) > label:hover,
+
+.rating-area:not(:checked) > label:hover ~ label {
+
+    color: gold;
+
+}
+
+.rating-area > input:checked + label:hover,
+
+.rating-area > input:checked + label:hover ~ label,
+
+.rating-area > input:checked ~ label:hover,
+
+.rating-area > input:checked ~ label:hover ~ label,
+
+.rating-area > label:hover ~ input:checked ~ label {
+
+    color: gold;
+
+    text-shadow: 1px 1px goldenrod;
+
+}
+
+.rate-area > label:active {
+
+    position: relative;
+
+}
+.post_show_submit_rate{
+    padding: 0;
+    height: 40px !important;
+    width: 80px !important;
 }

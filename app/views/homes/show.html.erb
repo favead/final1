@@ -17,7 +17,7 @@
 			<% @posts.each do |post|%>
 				<div class="home_show_post_card card">
 					<p> <%= t('.name')%> : <%= post.name %></p>
-					<p> <%= t('.tags')%> : <%= raw post.tags.map(&:title).map{ |t| link_to t, class: 'tag tag-primary'}.join(' ') %></p>
+					<p> <%= t('.tags')%> : <%= raw post.tags.map{ |t| link_to t.title, tag_path(:id => t.id), class: 'tag tag-primary'}.join(' ') %></p>
 					<p> <%= t('.published')%> : <%= post.published %> </p>
 					<div class="home_show_post_card_links">
 						<% 	@post_show = '/posts/' + post.id.to_s%>
