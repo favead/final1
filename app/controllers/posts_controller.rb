@@ -45,16 +45,10 @@ class PostsController < ApplicationController
 	private
 
 	def new_post_params
-		@content = params[:rich_content].to_s
-		@content.split(/\<.*?\>/).join('')
-		params[:content] = @content
 		params.permit(:name,:content,:published,:mark,:rich_content,:tagging,:user_id)
 	end
 
 	def update_post_params
-		@content = params[:rich_content].to_s
-		@content.split(/\<.*?\>/).join('')
-		params[:content] = @content
 		params.permit(:name,:content,:published,:mark,:rich_content,:tagging,:user_id)
 	end
 

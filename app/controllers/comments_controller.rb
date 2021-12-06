@@ -13,9 +13,6 @@ class CommentsController < ApplicationController
 	private
 
 	def comment_params
-		@content = params[:rich_content].to_s
-		@content.split(/\<.*?\>/).join('')
-		params[:content] = @content
 		params.permit(:user_id,:post_id,:rich_content,:content)
 	end
 end
